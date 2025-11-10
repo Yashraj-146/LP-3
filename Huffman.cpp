@@ -39,20 +39,19 @@ public:
     }
 
     void encode(const string& input) {
-        // Step 1: Frequency count
+        // Frequency count
         unordered_map<char, int> freq;
         for (char c : input) {
             freq[c]++;
         }
 
-        // Step 2: Min-heap with custom comparator
+        // Min-heap with custom comparator
         priority_queue<Node*, vector<Node*>, Compare> pq;
 
         for (auto p : freq) {
             pq.push(new Node(p.first, p.second));
         }
 
-        // Step 3: Build the Huffman Tree
         while (pq.size() > 1) {
             Node* left = pq.top(); pq.pop();
             Node* right = pq.top(); pq.pop();
@@ -66,17 +65,14 @@ public:
 
         Node* root = pq.top();
 
-        // Step 4: Generate codes
         unordered_map<char, string> hCodes;
         buildCodes(root, "", hCodes);
 
-        // Print Huffman Codes
         cout << "Huffman Codes:\n";
         for (auto p : hCodes) {
             cout << p.first << " : " << p.second << endl;
         }
 
-        // Encode the input string
         cout << "\nEncoded string: ";
         for (char c : input) {
             cout << hCodes[c]<<" ";
