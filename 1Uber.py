@@ -39,15 +39,12 @@ df['distance'] = df.apply(
 )
 
 #6
-plt.figure(figsize=(8,5))
 sns.boxplot(data=df[['fare_amount', 'distance']])
-plt.show()
+
 
 df = df[df['distance'] < 100]
 
-plt.figure(figsize=(8,5))
 sns.boxplot(data=df[['fare_amount', 'distance']])
-plt.show()
 
 #7
 corr = df.corr(method = "pearson")
