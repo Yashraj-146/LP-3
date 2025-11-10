@@ -27,22 +27,13 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.fit_transform(X_test)
 
 # 7
-model = Sequential ([
-    Dense(64, activation = 'relu', input_dim = X_train.shape[1]),
-    Dropout(0.3),
-    Dense(32, activation = 'relu'),
-    Dropout(0.3),
-    Dense(1, activation = 'sigmoid')
-])
-
-model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+from sklearn.neural_network import MLPClassifier
+model = MLPClassifier()
+model.fit(X_train, y_train)
 
 # 8
-history = model.fit(X_train, y_train, epochs = 50, batch_size = 32, validation_split = 0.2, verbose = 1)
-
-# 9
 y_pred = (model.predict(X_test) > 0.5).astype("int32")
 
-# 10
-print(f"\n Accuracy: {accuracy_score(y_test, y_pred):.4f}")
-print(f"\n Confusion Matrix(y_pred, y_test)")
+# 9
+print(accuracy_score(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
