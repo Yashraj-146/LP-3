@@ -32,7 +32,7 @@ model = MLPClassifier()
 model.fit(X_train, y_train)
 
 # 8
-y_pred = (model.predict(X_test) > 0.5).astype("int32")
+y_pred = model.predict(X_test)
 
 # 9
 print(accuracy_score(y_test, y_pred))
