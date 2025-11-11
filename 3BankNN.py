@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, confusion_matrix
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
+from sklearn.neural_network import MLPClassifier
 
 # 2
 df = pd.read_csv("a3.csv")
